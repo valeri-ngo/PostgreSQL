@@ -1,0 +1,6 @@
+SELECT
+	COUNT(*) AS countries_without_rivers
+FROM countries AS c
+LEFT JOIN countries_rivers AS cr ON cr.country_code = c.country_code
+WHERE cr.river_id IS NULL
+;
