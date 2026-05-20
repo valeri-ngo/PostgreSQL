@@ -2,16 +2,13 @@ CREATE FUNCTION fn_difficulty_level(level INT)
 RETURNS VARCHAR(30)
 AS $$
 BEGIN
-    IF level <= 40 THEN 
-        RETURN 'Normal Difficulty';
-    ELSIF level BETWEEN 41 AND 60 THEN
-        RETURN 'Nightmare Difficulty';
-    ELSE
-        RETURN 'Hell Difficulty';
-    END IF;
+    RETURN CASE
+        WHEN level <= 40 THEN 'Normal Difficulty'
+        WHEN level BETWEEN 41 AND 60 THEN 'Nightmare Difficulty'
+        ELSE 'Hell Difficulty'
+    END;
 END;
 $$ LANGUAGE plpgsql;
-
 
 SELECT
     user_id,
